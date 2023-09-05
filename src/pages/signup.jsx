@@ -17,7 +17,7 @@ function handleSubmit(e)
 {
     e.preventDefault();
 
-    let validation = true;
+    let validation = true;//not to let server call if field is empty
     let temp = {}
     
     if(!name){
@@ -42,9 +42,21 @@ if(validation){
         "password":e.target.password.value,
         "role":e.target.role.value
     })
+    .then(res=>{
+
+    })
 
     .catch(err=>{
         console.log(err);
+        let temp = {}
+          if (err.response.data.errors && err.response.data.errors?.length > 0) {
+            err.response.data.errors.forEach(indi_error => {
+              temp[indi_error.path] = indi_error.message
+            })
+
+            setError(temp)
+          }
+        
     })
 }
    
@@ -62,17 +74,38 @@ return(
 
     <form onSubmit={handleSubmit}>
     <label htmlFor="" className="form-label">Name</label><br/>
-<input type="text" name="name" value={name} onChange={(e)=> setName(e.target.value)} className="form-control mt-3" placeholder="Name"/>
+<input type="text" name="name" value={name} onChange={(e)=>{
+     setName(e.target.value)
+    if(e.target.value)
+    {
+        setError({...error, name:""})
+    }
+    else{
+        setError({...error, name:"this is required field"})
+    }
+}} 
+className="form-control mt-3" placeholder="Name"/>
 { 
   error
   &&
-  <small className="text-red-600">this is required field</small>
+  <small className="text-red-600">{error.name}</small>
 
 }
 
 
 <br/><br/> <label htmlFor="" className="form-label">Email</label><br/>
-<input type="email" name="email" value={email} onChange={(e)=> setEmail(e.target.value)} className="form-control mt-3" placeholder="Email"/>
+<input type="email" name="email" value={email} onChange={(e)=> {
+    setEmail(e.target.value)
+
+ if(e.target.value)
+ {
+     setError({...error, email:""})
+ }
+ else{
+     setError({...error, email:"this is required field"})
+ }
+}} 
+className="form-control mt-3" placeholder="Email"/>
 {
     error
     &&
@@ -80,7 +113,17 @@ return(
 }
 
 <br/><br/><label htmlFor="" className="form-label">Password</label><br/>
-<input type="password" name="password" value={password} onChange={(e)=> setPassword(e.target.value)} className="form-control mt-3" placeholder="Password"/><br/><br/>
+<input type="password" name="password" value={password} onChange={(e)=>{
+setPassword(e.target.value)
+
+if(e.target.value)
+ {
+     setError({...error, password:""})
+ }
+ else{
+     setError({...error, password:"please enter password"})
+ }
+}} className="form-control mt-3" placeholder="Password"/>
 {
       error
       &&
@@ -88,7 +131,7 @@ return(
 }
 
 
-<label htmlFor="" className="form-label">Role</label>
+<br/><br/><label htmlFor="" className="form-label">Role</label>
 <select  className="form-control mt-3"  name="role">
 <option value={"company"}>Company</option>
 <option value={"job-seeker"}>Job-Seeker</option>
