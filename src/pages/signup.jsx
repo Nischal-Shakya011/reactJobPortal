@@ -51,7 +51,7 @@ if(validation){
         let temp = {}
           if (err.response.data.errors && err.response.data.errors?.length > 0) {
             err.response.data.errors.forEach(indi_error => {
-              temp[indi_error.path] = indi_error.message
+              temp[indi_error.params] = indi_error.msg
             })
 
             setError(temp)
