@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function Signup()
 {
+    const router = useRouter()
     let [name, setName] = useState("")
     let [password, setPassword] = useState("")
     let [email, setEmail] = useState("")
     let [error, setError] = useState({
 
     })
-
 
 function handleSubmit(e)
 {
@@ -39,11 +42,11 @@ if(validation){
     axios.post("https://express-job-portal-u1uo.vercel.app/api/signup", {
         "name":name,
         "email":email,
-        "password":e.target.password.value,
+        "password":password,
         "role":e.target.role.value
     })
-    .then(res=>{
-
+    .then(res => {
+router.push("/login")
     })
 
     .catch(err=>{
@@ -138,6 +141,8 @@ if(e.target.value)
 </select>
 
 <input type="submit" value="Create Account" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949]"/>
+
+<br/><br/><p className="text-center">Already a user? <Link href={"/login"} className="font-bold">Login</Link></p>
 
     </form>
 </div>
