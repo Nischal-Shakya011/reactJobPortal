@@ -3,9 +3,13 @@ import axios from "axios";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useRouter } from "next/router";
+
 
 export default function Signup()
 {
+    const router = useRouter()
+
     let [password, setPassword] = useState("")
     let [email, setEmail] = useState("")
     let [error, setError] = useState("")
@@ -37,7 +41,7 @@ if(validation){
         "password":password,
     })
     .then(res=>{
-
+router.push("/")
     })
 
     .catch(err=>{
