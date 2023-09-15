@@ -4,6 +4,9 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/router";
+import{AiOutlineLoading3Quarters} from 'react-icons/ai'
+import { useDispatch } from "react-redux";
+import { setReduxUser } from "@/redux/slice/userSlice";
 
 
 export default function Signup()
@@ -16,12 +19,12 @@ export default function Signup()
     let [indi_error, setIndiError] = useState({
 
     })
-
+    let [isSubmitting, setisSubmitting] = useState(false)
+    const dispatch = useDispatch();
 
 function handleSubmit(e)
 {
     e.preventDefault();
-
     let validation = true;//not to let server call if field is empty
     let temp = {}
     if(!email){
@@ -36,15 +39,20 @@ function handleSubmit(e)
     
 
 if(validation){
+setisSubmitting(true)
+
     axios.post("https://express-job-portal-u1uo.vercel.app/api/login", {
         "email":email,
         "password":password,
     })
     .then(res=>{
+        setisSubmitting(false) 
+       dispatch( setReduxUser(res.data.user))
 router.push("/")
     })
 
     .catch(err=>{
+        setisSubmitting(false)
         console.log(err);
          setError(err.response.data.msg)
         
@@ -107,7 +115,8 @@ indi_error
 <small className="text-red-600">{indi_error.password}</small>
 }
 
-<input type="submit" value="Login" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949]"/>
+{/* <input type="submit" value="Login" disabled={isSubmitting} className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] disabled:bg-green-200"/> */}
+<button type="submit" disabled={isSubmitting} className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] ">{isSubmitting&&<AiOutlineLoading3Quarters className="inline"/>}  Login</button>
 <br/><br/><p className=" text-center">Not a Member?  <Link href={"/signup"} className="font-bold text-center"> Register</Link></p>
     </form>
 </div>

@@ -15,6 +15,8 @@ export default function Signup()
     let [error, setError] = useState({
 
     })
+    let [isSubmitting, setisSubmitting] = useState(false)
+
 
 function handleSubmit(e)
 {
@@ -39,6 +41,7 @@ function handleSubmit(e)
     setError(temp)
 
 if(validation){
+    setisSubmitting(true)
     axios.post("https://express-job-portal-u1uo.vercel.app/api/signup", {
         "name":name,
         "email":email,
@@ -46,10 +49,14 @@ if(validation){
         "role":e.target.role.value
     })
     .then(res => {
+        setisSubmitting(false)
+
 router.push("/login")
     })
 
     .catch(err=>{
+        setisSubmitting(false)
+
         console.log(err);
         let temp = {}
           if (err.response.data.errors && err.response.data.errors?.length > 0) {
@@ -140,7 +147,7 @@ if(e.target.value)
 <option value={"job-seeker"}>Job-Seeker</option>
 </select>
 
-<input type="submit" value="Create Account" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949]"/>
+<input disabled={isSubmitting} type="submit" value="Create Account" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] disabled:bg-green-200"/>
 
 <br/><br/><p className="text-center">Already a user? <Link href={"/login"} className="font-bold">Login</Link></p>
 
