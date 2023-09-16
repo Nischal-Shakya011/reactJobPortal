@@ -9,9 +9,10 @@ import { useDispatch } from "react-redux";
 import { setReduxUser } from "@/redux/slice/userSlice";
 
 
-export default function Signup()
+export default function Login()
 {
     const router = useRouter()
+    const dispatch = useDispatch();
 
     let [password, setPassword] = useState("")
     let [email, setEmail] = useState("")
@@ -20,7 +21,6 @@ export default function Signup()
 
     })
     let [isSubmitting, setisSubmitting] = useState(false)
-    const dispatch = useDispatch();
 
 function handleSubmit(e)
 {
@@ -46,9 +46,10 @@ setisSubmitting(true)
         "password":password,
     })
     .then(res=>{
+        // console.log(res);
         setisSubmitting(false) 
-       dispatch( setReduxUser(res.data.user))
-router.push("/")
+        dispatch(setReduxUser(res.data.user))
+        router.push("/")
     })
 
     .catch(err=>{

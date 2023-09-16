@@ -4,22 +4,18 @@ const initialState = {
   value: null,
 }
 
-export const userSlice = createSlice({
-  name: 'user',
+export const applySlice = createSlice({
+  name: 'apply',
   initialState,
   reducers: { 
-   "setReduxUser":(state, action)=>{
+   "setReduxapply":(state, action)=>{
     console.log(action);
     state.value = action.payload
-   },
-
-   "logout":(state)=>{
-    state.value = null
    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setReduxUser, logout } = userSlice.actions
+export const { setReduxapply } = applySlice.actions
 
-export default userSlice.reducer
+export default applySlice.reducer
