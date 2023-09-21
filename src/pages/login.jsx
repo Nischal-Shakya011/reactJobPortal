@@ -46,9 +46,10 @@ setisSubmitting(true)
         "password":password,
     })
     .then(res=>{
-        // console.log(res);
+        console.log(res);
         setisSubmitting(false) 
         dispatch(setReduxUser(res.data.user))
+        localStorage.setItem("access_token", res.data.token);
         router.push("/")
     })
 

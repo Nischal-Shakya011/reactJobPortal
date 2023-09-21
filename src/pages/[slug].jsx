@@ -8,6 +8,33 @@ import Footer from '@/components/Footer'
 
 
 export default function SingleJob({job}){
+    function handleClick(e){
+ e.preventDefault();
+ 
+//    console.log(job);
+const requestData = {
+    jobs: [{ job_id: job._id }]
+    
+  };
+ 
+ axios.post("https://express-job-portal-u1uo.vercel.app/api/apply", requestData,
+
+{
+             headers: {
+                Authorization: "bearer " + localStorage.getItem("access_token")
+            }
+})
+
+.then(res=>{
+console.log("applied");
+})
+.catch(err=>{
+    console.log(err);
+})
+}
+           
+    
+
     return(
         <>
         <Header/>
@@ -15,7 +42,7 @@ export default function SingleJob({job}){
         <p className='text-xl font-bold'>{job.name}({job.job_level})-CompanyName</p>
         </div>
         <div className='text-center'>
-           <button className='bg-primary p-3 rounded-lg mt-5 text-white hover:bg-[#0e5949]'>Apply This Job</button> 
+           <button className='bg-primary p-3 rounded-lg mt-5 text-white hover:bg-[#0e5949]' onClick={handleClick}>Apply This Job</button> 
         </div>
         <div className='container'>
             <p className='text-lg font-semibold'>Number of vacancy : <span className='text-sm text-[#3e423f]'>{job.number_of_vacancy}</span> </p>

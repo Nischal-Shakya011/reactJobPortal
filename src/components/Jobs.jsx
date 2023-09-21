@@ -42,7 +42,7 @@ export default function jobs({jobs, meta_data})
                         </div>
             })
         }
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 mb-2">
             <button className="bg-primary text-white p-3 rounded-lg hover:bg-[#0e5949]"          
              onClick={(e) => {
 // console.log(router.query) // {search_term=frontend,page=1}
