@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import Link from "next/link";
+import {AiFillEye} from 'react-icons/ai'
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -28,16 +30,17 @@ export default function Applied(){
 <div className="bg-back p-6 text-xl text-center font-bold">
     Applied Jobs
 </div>
-<table className=" container border border-back rounded-lg outline-none shadow-sm p-10  w-3/4">
-            <tr className="border-y-2">
-                <th>Title</th>
-                <th>Deadline</th>
-                <th>Applied Date</th>
-                <th>Offered Salary</th>
-                <th>Action</th>
-
-            </tr>
+<div className="container">
+<table className="border-2 border-back rounded-lg outline-none shadow-sm p-3 w-full mt-3">
+            <div className="grid grid-cols-5 border-black border-b-2 h-16 p-6">
             
+                <span>Title</span>
+                <span>Deadline</span>
+                <span>Applied Date</span>
+                <span>Offered Salary</span>
+                <span>Action</span>
+
+            </div>
             {
     apply.map(app =>{
         // return <div>{app.jobs[0].name}</div>
@@ -48,18 +51,19 @@ export default function Applied(){
         const dateCreate = create[0]
 
         return<>
-       <tr>
-        <td>{app.jobs[0].name}</td>
-        <td>{datePart}</td>
-        <td>{dateCreate}</td>
-        <td>{app.jobs[0].offered_salary}</td>
-        <td>action</td>
-
-       </tr>
+       <div className="grid grid-cols-5 border-back border-b-2 h-20 p-6" >
+        <span>{app.jobs[0].name}</span>
+        <span>{datePart}</span>
+        <span>{dateCreate}</span>
+        <span>{app.jobs[0].offered_salary}</span>
+        <Link href={`/${app.jobs[0].job_id}`}><AiFillEye/> View</Link>
+       </div>
         </>
     })
     }
         </table>
+</div>
+
     
     <Footer/>
     </>
