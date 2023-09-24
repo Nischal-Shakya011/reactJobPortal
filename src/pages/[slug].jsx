@@ -37,7 +37,6 @@ console.log("applied");
 
     return(
         <>
-        <Header/>
         <div className='bg-[#d7d8d9] p-4 text-center'>
         <p className='text-xl font-bold'>{job.name}({job.job_level})-CompanyName</p>
         </div>

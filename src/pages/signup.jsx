@@ -75,7 +75,6 @@ router.push("/login")
 
 return(
 <>
-<Header/>
 <div className="bg-back p-6 text-xl text-center font-bold">
     Register
 </div>

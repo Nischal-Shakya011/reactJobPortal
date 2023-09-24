@@ -19,20 +19,19 @@ export default function Applied(){
                     }
         })
         .then((res) =>{
-        console.log(res);
+        // console.log(res);
         setApply(res.data)
         })   
      },[])
 
 
     return<>
-<Header/>
 <div className="bg-back p-6 text-xl text-center font-bold">
     Applied Jobs
 </div>
 <div className="container">
-<table className="border-2 border-back rounded-lg outline-none shadow-sm p-3 w-full mt-3">
-            <div className="grid grid-cols-5 border-black border-b-2 h-16 p-6">
+<div className="border-2 border-back rounded-lg outline-none shadow-sm p-1 w-full mt-3">
+            <div className="grid grid-cols-5 border-black border-b-2 h-16 p-6 shadow-md font-bold">
             
                 <span>Title</span>
                 <span>Deadline</span>
@@ -51,7 +50,7 @@ export default function Applied(){
         const dateCreate = create[0]
 
         return<>
-       <div className="grid grid-cols-5 border-back border-b-2 h-20 p-6" >
+       <div className="grid grid-cols-5 border-back border-b-2 h-20 p-6 shadow-sm" >
         <span>{app.jobs[0].name}</span>
         <span>{datePart}</span>
         <span>{dateCreate}</span>
@@ -61,7 +60,7 @@ export default function Applied(){
         </>
     })
     }
-        </table>
+        </div>
 </div>
 
     

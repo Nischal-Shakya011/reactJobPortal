@@ -46,7 +46,7 @@ setisSubmitting(true)
         "password":password,
     })
     .then(res=>{
-        console.log(res);
+        // console.log(res);
         setisSubmitting(false) 
         dispatch(setReduxUser(res.data.user))
         localStorage.setItem("access_token", res.data.token);
@@ -66,7 +66,6 @@ setisSubmitting(true)
 
 return(
 <>
-<Header/>
 <div className="bg-back p-6 text-xl text-center font-bold">
     Login
 </div>

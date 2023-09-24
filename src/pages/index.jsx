@@ -21,7 +21,6 @@ export default function Home(props) {
   
   return (
    <>
-   <Header/>
    <Banner/>
    <AllJobs {...props}/>
    <Footer/>
