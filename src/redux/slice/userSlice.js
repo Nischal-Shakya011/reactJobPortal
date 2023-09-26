@@ -9,12 +9,13 @@ export const userSlice = createSlice({
   initialState,
   reducers: { 
    "setReduxUser":(state, action)=>{
-    console.log(action);
+    // console.log(action);
     state.value = action.payload
    },
 
    "logout":(state)=>{
     state.value = null
+    localStorage.removeItem("access_token")
    }
   },
 })

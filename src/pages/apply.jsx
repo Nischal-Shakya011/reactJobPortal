@@ -26,6 +26,8 @@ export default function Applied(){
 
 
     return<>
+    <div className="wrapper">
+        <div>
 <div className="bg-back p-6 text-xl text-center font-bold">
     Applied Jobs
 </div>
@@ -62,8 +64,9 @@ export default function Applied(){
     }
         </div>
 </div>
-
+</div>
     
     <Footer/>
+    </div>
     </>
 }

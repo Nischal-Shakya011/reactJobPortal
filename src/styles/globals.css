@@ -17,3 +17,13 @@
   padding-right: .70rem;
   padding-left: .70rem;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 88.3vh;
+}
+
+.footer {
+  grid-row: 2;
+}

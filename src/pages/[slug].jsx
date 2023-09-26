@@ -37,6 +37,8 @@ console.log("applied");
 
     return(
         <>
+            <div className='wrapper'>
+<div>
         <div className='bg-[#d7d8d9] p-4 text-center'>
         <p className='text-xl font-bold'>{job.name}({job.job_level})-CompanyName</p>
         </div>
@@ -55,7 +57,9 @@ console.log("applied");
         <p className='text-lg font-bold'>Job Description</p>
         <p>{job.description}</p>
         </div>
-        <Footer/>
+</div>
+        <Footer className="footer"/>
+        </div>
 
         </>
     )

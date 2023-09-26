@@ -16,15 +16,19 @@ function App({ Component, pageProps }) {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    axios.get("https://express-job-portal-u1uo.vercel.app/api/get-user", {
-      headers: {
-        Authorization: "bearer " + localStorage.getItem("access_token")
+    if(localStorage.getItem("access_token")){
+      
+      axios.get("https://express-job-portal-u1uo.vercel.app/api/get-user", {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("access_token")
+      }
+      }).then(res =>{
+        // console.log(res);
+        dispatch(setReduxUser(res.data[0]))
+      
+      })
     }
-    }).then(res =>{
-      // console.log(res);
-      dispatch(setReduxUser(res.data[0]))
     
-    })
   },[])
   return <>
   <Header/>

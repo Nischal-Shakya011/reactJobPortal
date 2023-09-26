@@ -18,6 +18,7 @@ export default function jobs({jobs, meta_data})
         
         <div className="bg-white">
             <p className="text-black font-bold text-xl text-center mt-5">All Popular Jobs</p>
+            {/* <p>total-{meta_data.total}</p> */}
             {jobs.map(job => {
                 // console.log(job);
                 return <div className="container w-full h-32 shadow-xl p-3 mt-4 rounded-lg  bg-[#edf2ef] flex justify-between items-center">
