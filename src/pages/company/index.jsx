@@ -3,6 +3,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import Footer from "@/components/Footer";
+import Link from "next/link";
+import {AiFillEye} from 'react-icons/ai'
+
 
 
 
@@ -13,16 +16,16 @@ export default function Jobs(){
     useEffect(()=>{
     async function fetchJobs(){
         try{
-            let url = "https://express-job-portal-u1uo.vercel.job/api/jobs/posted-jobs"
+            // let url = "https://express-job-portal-u1uo.vercel.job/api/jobs/posted"
 
-        await axios.get(url,
+        await axios.get("https://express-job-portal-u1uo.vercel.app/api/jobs/posted",
             {
                 headers: {
-                    Authorization: "bearer" + localStorage.getItem("access_token")
+                    Authorization: "bearer " + localStorage.getItem("access_token")
                 }
         })
         .then(res => {
-           console.log(res);
+           console.log(res.data[0]);
            setJobs(res.data)
          
         })
@@ -41,7 +44,7 @@ export default function Jobs(){
     return<>
     <div className="wrapper">
         <div>
-{/* <div className="bg-back p-6 text-xl text-center font-bold">
+<div className="bg-back p-6 text-xl text-center font-bold">
     Posted Jobs
 </div>
 <div className="container">
@@ -70,14 +73,14 @@ export default function Jobs(){
         <span>{datePart}</span>
         <span>{dateCreate}</span>
         <span>{job.offered_salary}</span>
-        <Link href={`/${job._id}`}><AiFillEye/> View</Link>
-        <span>action</span>
+        <Link href={`/${job._id}`}><AiFillEye/></Link>
+        {/* <span>action</span> */}
        </div>
         </>
     })
     }
         </div>
-</div> */}
+</div>
 
     </div>
     <Footer/>
