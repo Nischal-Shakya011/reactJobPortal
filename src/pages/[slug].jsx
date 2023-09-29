@@ -67,7 +67,7 @@ console.log("applied");
         <p>{job.description}</p>
         </div>
 </div>
-        <Footer className="footer"/>
+        {/* <Footer className="footer"/> */}
         </div>
 
         </>

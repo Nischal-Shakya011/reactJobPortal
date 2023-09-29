@@ -43,7 +43,7 @@ let redux_user = useSelector((redux_store)=>
         :
         <>
         <li>
-      <Link href={"/"} className='bg-primary text-white text-lg px-5 py-2 rounded-lg hover:bg-[#0e5949] cursor-pointer'>Post a job</Link>       
+      <Link href={"/company/create"} className='bg-primary text-white text-lg px-5 py-2 rounded-lg hover:bg-[#0e5949] cursor-pointer'>Post a job</Link>       
 </li>
         <li>
           <Link href={"/company"} className='bg-primary text-white text-lg px-3 py-2  rounded-lg hover:bg-[#0e5949] cursor-pointer'>Posted Jobs</Link>

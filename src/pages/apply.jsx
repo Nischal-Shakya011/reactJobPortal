@@ -66,7 +66,7 @@ export default function Applied(){
 </div>
 </div>
     
-    <Footer/>
+    {/* <Footer/> */}
     </div>
     </>
 }

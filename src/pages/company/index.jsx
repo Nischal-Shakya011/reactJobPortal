@@ -83,7 +83,7 @@ export default function Jobs(){
 </div>
 
     </div>
-    <Footer/>
+    {/* <Footer/> */}
     </div>
     </>
 }
