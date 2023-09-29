@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout, setReduxUser } from '@/redux/slice/userSlice';
 import {BiUserCircle} from 'react-icons/bi'
+import { COMPANY } from '@/const/roles';
 
 
 export default function Header(){
@@ -19,19 +20,36 @@ let redux_user = useSelector((redux_store)=>
         </p>
       <ul className='flex gap-7  p-3 '>
         {/* <li>{redux_user?.name}</li>  */}
+        
+        <li>
+        <Link href={"/"} className='bg-primary text-white text-lg px-5 py-2 rounded-lg hover:bg-[#0e5949] cursor-pointer'>Charts</Link>       
+        </li>
        {
+        
         redux_user
         ?
+        
         <>
         <li>
           <Link href="/" className='bg-primary text-white text-lg px-3 py-2  rounded-lg hover:bg-[#0e5949] cursor-pointer'><BiUserCircle className="inline"/> {redux_user.name}</Link>
         </li>
+       { redux_user.role != COMPANY
+       ?
+       <>
         <li>
           <Link href={"/apply"} className='bg-primary text-white text-lg px-3 py-2  rounded-lg hover:bg-[#0e5949] cursor-pointer'>Applied Jobs</Link>
         </li>
+        </>
+        :
+        <>
+        <li>
+      <Link href={"/"} className='bg-primary text-white text-lg px-5 py-2 rounded-lg hover:bg-[#0e5949] cursor-pointer'>Post a job</Link>       
+</li>
         <li>
           <Link href={"/company"} className='bg-primary text-white text-lg px-3 py-2  rounded-lg hover:bg-[#0e5949] cursor-pointer'>Posted Jobs</Link>
         </li>
+        </>
+        }
         <li>
         <Link href={"/"} className='text-primary p-2 text-lg hover:text-xl cursor-pointer' onClick={()=>{
           // dispatch(setReduxUser(null))
@@ -46,9 +64,8 @@ let redux_user = useSelector((redux_store)=>
         <li>
         <Link href={"/login"} className='text-primary p-2 text-lg hover:text-xl cursor-pointer'>Login</Link> 
       </li>
-      <li>
-      <Link href={"/"} className='bg-primary text-white text-lg px-5 py-2 rounded-lg hover:bg-[#0e5949] cursor-pointer'>Post a job</Link>       
-</li>
+     
+
         </>
         
       }

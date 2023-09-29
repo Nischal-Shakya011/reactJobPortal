@@ -4,10 +4,14 @@ import axios from 'axios'
 import Link from 'next/link';
 
 import Footer from '@/components/Footer'
+import { useSelector } from 'react-redux';
 
 
 
 export default function SingleJob({job}){
+
+let redux_user = useSelector((redux_store) => redux_store.user.value)
+
     function handleClick(e){
  e.preventDefault();
  
@@ -43,9 +47,14 @@ console.log("applied");
         <p className='text-xl font-bold'>{job.name}({job.job_level})-CompanyName</p>
         </div>
         <div className='text-center'>
+            {
+                redux_user?.role != "company"
+                &&
            <button className='bg-primary p-3 rounded-lg mt-5 text-white hover:bg-[#0e5949]' onClick={handleClick}>Apply This Job</button> 
+
+            }
         </div>
-        <div className='container'>
+        <div className='container mt-5'>
             <p className='text-lg font-semibold'>Number of vacancy : <span className='text-sm text-[#3e423f]'>{job.number_of_vacancy}</span> </p>
             <p className='text-lg font-semibold'>Location : <span className='text-sm text-[#3e423f]'>{job.location}</span> </p>
             <p className='text-lg font-semibold'>Offered salary : <span className='text-sm text-[#3e423f]'>{job.offered_salary}</span> </p>
