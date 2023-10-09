@@ -60,7 +60,7 @@ console.log("applied");
             <p className='text-lg font-semibold'>Offered salary : <span className='text-sm text-[#3e423f]'>{job.offered_salary}</span> </p>
             <p className='text-lg font-semibold'>Deadline : <span className='text-sm text-[#3e423f]'>{job.deadline}</span> </p>
             <p className='text-lg font-semibold'>Status : <span className='text-sm text-[#3e423f]'>{job.status}</span> </p>
-            <p className='text-lg font-semibold'>Job type : <span className='text-sm text-[#3e423f]'>{job.job_type}</span> </p>
+            <p className='text-lg font-semibold'>About us : <span className='text-sm text-[#3e423f]'>{job.company_website}</span> </p>
         </div>
         <div className='container mt-5'>
         <p className='text-lg font-bold'>Job Description</p>

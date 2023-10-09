@@ -2,28 +2,34 @@ import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 
-export default function Create(){
+export default function Update({job}){
 
     const [data, setData] = useState({
         "name":"",
-        "cname":"",
-        "web":"",
-        "vacancy":"",
-        "level":"",
-        "contact":"",
+        "company_name":"",
+        "company_website":"",
+        "no_of_vacancy":"",
+        "job_level":"",
+        "contact_no":"",
         "location":"",
         "deadline":"",
-        "salary":"",
+        "offered_salary":"",
         "description":"",
-        "start":"",
-        "category":[],
+        "application_start":"",
+        "categories":[],
         "images":[]
         
-       
-        
     })
+    const router = useRouter();
+
+    // const [data, setData] = useState(job)
+
+    useEffect(() => {
+        setData(job)
+    }, [job])
 
     // let [error, setError] = useState({
 
@@ -41,10 +47,10 @@ export default function Create(){
           
               if (checked) {
                 // Checkbox is checked, add the value to the array
-                updatedCategory = [...data.category, value];
+                updatedCategory = [...data.categories, value];
               } else {
                 // Checkbox is unchecked, remove the value from the array
-                updatedCategory = data.category.filter((cat) => cat !== value);
+                updatedCategory = data.categories.filter((cat) => cat !== value);
               }
           
               setData({ ...data, [name]: updatedCategory });
@@ -57,25 +63,6 @@ export default function Create(){
     }
 }
       
-        // function handleChange(e) {
-        //     // console.log(data);
-        //     console.log(e);
-        //     // console.log(e.target.type);
-        //     // console.log(e.target.files);
-        //     console.log(e.target.value);
-        //     e.preventDefault();
-              
-        //   setData({...data, [e.target.name]: e.target.type == "file" ? e.target.files : e.target.value})
-        // }
-        // function handleChange(e) {
-        //     if (e.target.type === "file") {
-        //       const selectedImages = Array.from(e.target.files);
-        //       console.log(selectedImages);
-        //       setData({ ...data, images: selectedImages });
-        //     } else {
-        //       setData({ ...data, [e.target.name]: e.target.value });
-        //     }
-        //   }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -120,61 +107,43 @@ export default function Create(){
     console.log(data.category);
     let form_data = new FormData();
     form_data.append("name", data.name)
-    form_data.append("company_name",data.cname)
-    form_data.append("company_website",data.web)
-    form_data.append("contact_no",data.contact)
-    form_data.append("offered_salary",data.salary)
-    form_data.append("number_of_vacancy",data.vacancy)
+    form_data.append("company_name",data.company_name)
+    form_data.append("company_website",data.company_web)
+    form_data.append("contact_no",data.contact_no)
+    form_data.append("offered_salary",data.offered_salary)
+    form_data.append("number_of_vacancy",data.number_of_vacancy)
     form_data.append("location",data.location)
     form_data.append("deadline",data.deadline)
-    form_data.append("job_level",data.level)
+    form_data.append("job_level",data.job_level)
     form_data.append("description",data.description)
-    form_data.append("application_start",data.start)
+    form_data.append("application_start",data.application_start)
     form_data.append("images[]", data.images);
 
 
-    let tempo = [...data.category]
+    let tempo = [...data.categories]
 
     tempo.forEach(cat =>{
         form_data.append("categories[]", cat)
     })
 
-    // let temp = [...data.images]
-    // let photo = []
+    let url = "http://express-job-portal-u1uo.vercel.app/api/jobs"
 
-    // temp.forEach(img =>{
-    //     photo.push(img)
-    // })
-    // form_data.append("images[]",photo)
-
-    // temp.forEach((img, index) =>{
-    //     console.log(img);
-        // form_data.append(`images[${index}]`, img)
-    //     form_data.append(`images[${index}]`, img, img.name);
-    // })
-    // data.images.forEach((img, index) => {
-    //     form_data.append(`images[]`, img);
-    //   });
-   
-
-     axios.post("https://express-job-portal-u1uo.vercel.app/api/jobs",form_data,
-    {
-        headers:
-        {
-            Authorization: "bearer " + localStorage.getItem("access_token")    
-        }
-    },
-    {
-        timeout:10000,
-             }
-    )
-    .then(res =>{
-        console.log("posted successfully");
-    })
-
-    .catch(err =>{
-        console.log(err);
-    })
+    if (router.query.slug) {
+        url = `http://express-job-portal-u1uo.vercel.app/api/jobs/${router.query.slug} `
+        axios.put(url, form_data, {
+            headers: {
+                Authorization: "bearer " + localStorage.getItem("access_token")
+            }
+        })
+        .then(res =>{
+            console.log("posted successfully");
+        })
+    
+        .catch(err =>{
+            console.log(err);
+        })
+        return;
+    }
 
 
     }
@@ -189,7 +158,7 @@ export default function Create(){
 <div className="border-2 border-back rounded-lg outline-none shadow-sm w-full mt-3 p-5 grid grid-cols-2 gap-12">
     <div>
     <label htmlFor="" className="form-label">Company Name</label>
-<input type="text" name="cname" value={data.cname}  className="form-control" onChange={handleChange} placeholder="Company Name*"/><br/><br/>
+<input type="text" name="company_name" value={data.company_name}  className="form-control" onChange={handleChange} placeholder="Company Name*"/><br/><br/>
 
     <label htmlFor="" className="form-label" >Job Title</label>
 <input type="text" name="name" value={data.name} onChange={handleChange
@@ -210,25 +179,26 @@ export default function Create(){
 } */}
 <br/><br/>
 <label htmlFor="" className="form-label ">Vacancy</label>
-<input type="number" name="vacancy" value={data.vacancy} className="form-control" onChange={handleChange} placeholder="Vacancy no.*"/><br/><br/>
+<input type="number" name="number_of_vacancy" value={data.number_of_vacancy} className="form-control" onChange={handleChange} placeholder="Vacancy no.*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Location</label>
 <input type="text" name="location" value={data.location} className="form-control" onChange={handleChange} placeholder="Location*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Application Start Date</label>
-<input type="Date" name="start" value={data.start} className="form-control" onChange={handleChange} /><br/><br/>
+<input type="Date" name="applicaton_start" value={data.applicaton_start} className="form-control" onChange={handleChange} /><br/><br/>
 
 <label htmlFor="" className="form-label">Job Category</label><br/>
 <div className="mt-3 flex gap-7">
     <span>
         <label htmlFor="" className="font-semibold">Frontend</label>
-<input type="checkbox" name="category" value="frontend"  className="ml-1"  onChange={handleChange} checked={data.category.includes("frontend")}/>
+{/* <input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("frontend")}/> */}
+<input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange}/>
 </span>
 
 <span>
 <label htmlFor="" className="font-semibold">Backend</label>
-{/* <input type="checkbox" name="category" value="backend"  className="ml-1"  onChange={handleChange} /> */}
-<input type="checkbox" name="category" value="backend"  className="ml-1"  onChange={handleChange} checked={data.category.includes("backend")} />
+<input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} />
+{/* <input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("backend")} /> */}
 </span>
 </div><br /><br />
 
@@ -237,10 +207,10 @@ export default function Create(){
     </div>
 <div>
 <label htmlFor="" className="form-label">Salary</label>
-<input type="number" name="salary" value={data.salary} className="form-control" onChange={handleChange} placeholder="Salary*"/><br/><br/>
+<input type="number" name="offered_salary" value={data.offered_salary} className="form-control" onChange={handleChange} placeholder="Salary*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Job Level</label>
-<select name="level" className="form-control" onChange={handleChange} value={data.level}>
+<select name="job_level" className="form-control" onChange={handleChange} value={data.job_level}>
     <option value = {null} ></option>
     <option value="fresher">Fresher</option>
     <option value="junior">Junior</option>
@@ -249,10 +219,10 @@ export default function Create(){
     </select><br/><br/>
 
 <label htmlFor="" className="form-label">Company Website</label>
-<input type="text" name="web" value={data.web} className="form-control" onChange={handleChange} placeholder="Company Website*"/><br/><br/>
+<input type="text" name="company_website" value={data.company_website} className="form-control" onChange={handleChange} placeholder="Company Website*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Contact no.</label>
-<input type="text" name="contact" value={data.contact} className="form-control" onChange={handleChange} placeholder="Contact no.*"/><br/><br/>
+<input type="text" name="contact_no" value={data.contact_no} className="form-control" onChange={handleChange} placeholder="Contact no.*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Application Deadline</label>
 <input type="Date" name="deadline" value={data.deadline}  className="form-control" onChange={handleChange}/><br/><br/>

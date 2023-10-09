@@ -20,12 +20,14 @@ export default function jobs({jobs, meta_data})
             <p className="text-black font-bold text-xl text-center mt-5">All Popular Jobs</p>
             {/* <p>total-{meta_data.total}</p> */}
             {jobs.map(job => {
-                // console.log(job);
+                // console.log(job.images);
+                let url = `http://express-job-portal-u1uo.vercel.app/${job.images[0]}`
+
                 return <div className="container w-full h-32 shadow-xl p-3 mt-4 rounded-lg  bg-[#edf2ef] flex justify-between items-center">
                 <div className="flex gap-8">
-                            <div className="ml-5">
-                              {/* <Image src={job.images[0]} alt='' className="w-16 h-16 rounded-[50%]" width={200} height={200}></Image>   */}
-                              <Image src={bannerImg} alt='' className="w-16 h-16 rounded-[50%]" width={200} height={200}></Image>  
+                            <div className="ml-5">   
+                              <Image src={url} alt='' className="w-16 h-16 rounded-[50%]" width={200} height={200}></Image>  
+                               {/* <Image src={bannerImg} alt='' className="w-16 h-16 rounded-[50%]" width={200} height={200}></Image>   */}
                             </div>
                             <div>
                            <p className="text-[#3e423f] text-sm">Company name</p>  
