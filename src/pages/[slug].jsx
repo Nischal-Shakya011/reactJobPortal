@@ -5,11 +5,12 @@ import Link from 'next/link';
 
 import Footer from '@/components/Footer'
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 
 
 export default function SingleJob({job}){
-
+let router = useRouter();
 let redux_user = useSelector((redux_store) => redux_store.user.value)
 
     function handleClick(e){
@@ -20,21 +21,26 @@ const requestData = {
     jobs: [{ job_id: job._id }]
     
   };
+ redux_user
+ ?
  
- axios.post("https://express-job-portal-u1uo.vercel.app/api/apply", requestData,
+    axios.post("https://express-job-portal-u1uo.vercel.app/api/apply", requestData,
 
-{
-             headers: {
-                Authorization: "bearer " + localStorage.getItem("access_token")
-            }
-})
-
-.then(res=>{
-console.log("applied");
-})
-.catch(err=>{
-    console.log(err);
-})
+    {
+                 headers: {
+                    Authorization: "bearer " + localStorage.getItem("access_token")
+                }
+    })
+    
+    .then(res=>{
+    console.log("applied");
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+ 
+:
+router.push("/login")
 }
            
     
@@ -44,15 +50,14 @@ console.log("applied");
             <div className='wrapper'>
 <div>
         <div className='bg-[#d7d8d9] p-4 text-center'>
-        <p className='text-xl font-bold'>{job.name}({job.job_level})-CompanyName</p>
+        <p className='text-xl font-bold'>{job.name}({job.job_level})-{job.company_name}</p>
         </div>
         <div className='text-center'>
             {
                 redux_user?.role != "company"
                 &&
            <button className='bg-primary p-3 rounded-lg mt-5 text-white hover:bg-[#0e5949]' onClick={handleClick}>Apply This Job</button> 
-
-            }
+                     }
         </div>
         <div className='container mt-5'>
             <p className='text-lg font-semibold'>Number of vacancy : <span className='text-sm text-[#3e423f]'>{job.number_of_vacancy}</span> </p>
@@ -67,7 +72,7 @@ console.log("applied");
         <p>{job.description}</p>
         </div>
 </div>
-        {/* <Footer className="footer"/> */}
+        <Footer className="footer"/>
         </div>
 
         </>

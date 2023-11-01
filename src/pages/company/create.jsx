@@ -1,10 +1,26 @@
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { useState } from "react";
+  import { useRouter } from "next/router";
+    import { useState, useRef } from "react";
+    import Footer from "@/components/Footer";
 
 
 export default function Create(){
+
+    const router = useRouter();
+
+    const companyNameRef = useRef();
+    const nameRef = useRef();
+    const vacancyRef = useRef();
+    const companyWebsiteRef = useRef();
+    const levelRef = useRef();
+    const contactRef = useRef();
+    const locationRef = useRef();
+    const salaryRef = useRef();
+    const applicationDeadlineRef = useRef();
+    const descriptionRef = useRef();
+    const applicationStartRef = useRef();
 
     const [data, setData] = useState({
         "name":"",
@@ -25,9 +41,10 @@ export default function Create(){
         
     })
 
-    // let [error, setError] = useState({
+    let [error, setError] = useState({
+    })
+    const [wholeError, setWholeError] = useState("")
 
-    // })
   
     function handleChange(e) {
             console.log(e);
@@ -79,45 +96,80 @@ export default function Create(){
 
     function handleSubmit(e){
         e.preventDefault();
-    //     let validation = true;
-    //    let temp = {};
+        let validation = true;
+       let temp = {};
 
-    //     if(!name){
-    //         temp.name = "required field";
-    //         validation = false;
-    //     }
-    //     if(!cname){
-    //         temp.cname = "required field";
-    //         validation = false;
-    //     } if(!web){
-    //         temp.web = "required field";
-    //         validation = false;
-    //     } if(!vacancy){
-    //         temp.vacancy = "required field";
-    //         validation = false;
-    //     } if(!contact){
-    //         temp.contact = "required field";
-    //         validation = false;
-    //     } if(!location){
-    //         temp.location = "required field";
-    //         validation = false;
-    //     } if(!deadline){
-    //         temp.deadline = "required field";
-    //         validation = false;
-    //     } if(!category){
-    //         temp.category = "required field";
-    //         validation = false;
-    //     }
-    //     if(!salary){
-    //         temp.salary = "required field";
-    //         validation = false;
-    //     }if(!description){
-    //         temp.description = "required field";
-    //         validation = false;
-    //     }
-    //     setError(temp)
+        if(!data.name){
+            temp.name = "required field";
+            validation = false;
+        }
+        if(!data.cname){
+            temp.cname = "required field";
+            validation = false;
+        } 
+    if(!data.web){
+            temp.web = "required field";
+            validation = false;
+        } if(!data.vacancy){
+            temp.vacancy = "required field";
+            validation = false;
+        } if(!data.contact){
+            temp.contact = "required field";
+            validation = false;
+        } if(!data.location){
+            temp.location = "required field";
+            validation = false;
+        } if(!data.deadline){
+            temp.deadline = "required field";
+            validation = false;
+        } if(!data.category){
+            temp.category = "required field";
+            validation = false;
+        }
+        if(!data.salary){
+            temp.salary = "required field";
+            validation = false;
+        }if(!data.description){
+            temp.description = "required field";
+            validation = false;
+        }
+        setError(temp)
 
-    console.log(data.category);
+    if (error.cname) {
+        companyNameRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+      if (error.name) {
+        nameRef.current.scrollIntoView({ behavior: "smooth" });
+      } 
+      if (error.vacancy) {
+        vacancyRef.current.scrollIntoView({ behavior: "smooth" });
+      } 
+      if (error.salary) {
+        salaryRef.current.scrollIntoView({ behavior: "smooth" });
+      } 
+      if (error.contact) {
+        contactRef.current.scrollIntoView({ behavior: "smooth" });
+      } 
+      if (error.level) {
+        levelRef.current.scrollIntoView({ behavior: "smooth" });
+      } 
+      if (error.web) {
+        companyWebsiteRef.current.scrollIntoView({ behavior: "smooth" });
+      } 
+      if (error.start) {
+        applicationStartRef.current.scrollIntoView({ behavior: "smooth" });
+      } 
+      if (error.deadline) {
+        applicationDeadlineRef.current.scrollIntoView({ behavior: "smooth" });
+      } 
+      if (error.description) {
+        descriptionRef.current.scrollIntoView({ behavior: "smooth" });
+      } 
+      if (error.location) {
+        locationRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+
+    // console.log(data.category);
     let form_data = new FormData();
     form_data.append("name", data.name)
     form_data.append("company_name",data.cname)
@@ -170,10 +222,12 @@ export default function Create(){
     )
     .then(res =>{
         console.log("posted successfully");
+        router.push("/posted")
     })
 
     .catch(err =>{
         console.log(err);
+        setWholeError(err.response.data.msg);
     })
 
 
@@ -186,13 +240,14 @@ export default function Create(){
     Create a Job
 </div> 
 <form className="container" onSubmit={handleSubmit}>
+
 <div className="border-2 border-back rounded-lg outline-none shadow-sm w-full mt-3 p-5 grid grid-cols-2 gap-12">
     <div>
     <label htmlFor="" className="form-label">Company Name</label>
-<input type="text" name="cname" value={data.cname}  className="form-control" onChange={handleChange} placeholder="Company Name*"/><br/><br/>
+<input type="text" name="cname" value={data.cname}  ref={companyNameRef} className="form-control" onChange={handleChange} placeholder="Company Name*"/><br/><br/>
 
     <label htmlFor="" className="form-label" >Job Title</label>
-<input type="text" name="name" value={data.name} onChange={handleChange
+<input type="text" name="name" value={data.name} ref={nameRef} onChange={handleChange
     // if(e.target.value)
     // {
     //     setError({...error, name:""})
@@ -210,37 +265,44 @@ export default function Create(){
 } */}
 <br/><br/>
 <label htmlFor="" className="form-label ">Vacancy</label>
-<input type="number" name="vacancy" value={data.vacancy} className="form-control" onChange={handleChange} placeholder="Vacancy no.*"/><br/><br/>
+<input type="number" name="vacancy" value={data.vacancy} ref={vacancyRef} className="form-control" onChange={handleChange} placeholder="Vacancy no.*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Location</label>
-<input type="text" name="location" value={data.location} className="form-control" onChange={handleChange} placeholder="Location*"/><br/><br/>
+<input type="text" name="location" value={data.location} ref={locationRef} className="form-control" onChange={handleChange} placeholder="Location*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Application Start Date</label>
-<input type="Date" name="start" value={data.start} className="form-control" onChange={handleChange} /><br/><br/>
+<input type="Date" name="start" value={data.start} ref={applicationStartRef} className="form-control" onChange={handleChange} /><br/><br/>
 
 <label htmlFor="" className="form-label">Job Category</label><br/>
 <div className="mt-3 flex gap-7">
     <span>
         <label htmlFor="" className="font-semibold">Frontend</label>
-<input type="checkbox" name="category" value="frontend"  className="ml-1"  onChange={handleChange} checked={data.category.includes("frontend")}/>
+<input type="checkbox" name="category" value="frontend"  className="ml-1" onChange={handleChange} checked={data.category.includes("frontend")}/>
 </span>
 
 <span>
 <label htmlFor="" className="font-semibold">Backend</label>
 {/* <input type="checkbox" name="category" value="backend"  className="ml-1"  onChange={handleChange} /> */}
-<input type="checkbox" name="category" value="backend"  className="ml-1"  onChange={handleChange} checked={data.category.includes("backend")} />
+<input type="checkbox" name="category" value="backend"  className="ml-1" onChange={handleChange} checked={data.category.includes("backend")} />
 </span>
 </div><br /><br />
 
 <label htmlFor="" className="form-label" >Upload Image</label> <br /><br />
 <input name="images" type="file" multiple onChange={handleChange}/>
+
+{
+wholeError
+&&
+<p className="bg-red-400 text-white text-center p-3 rounded-lg mt-20">Review your post</p>
+
+}
     </div>
 <div>
 <label htmlFor="" className="form-label">Salary</label>
-<input type="number" name="salary" value={data.salary} className="form-control" onChange={handleChange} placeholder="Salary*"/><br/><br/>
+<input type="number" name="salary" value={data.salary} ref={salaryRef} className="form-control" onChange={handleChange} placeholder="Salary*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Job Level</label>
-<select name="level" className="form-control" onChange={handleChange} value={data.level}>
+<select name="level" className="form-control" onChange={handleChange} value={data.level} ref={levelRef}>
     <option value = {null} ></option>
     <option value="fresher">Fresher</option>
     <option value="junior">Junior</option>
@@ -249,17 +311,17 @@ export default function Create(){
     </select><br/><br/>
 
 <label htmlFor="" className="form-label">Company Website</label>
-<input type="text" name="web" value={data.web} className="form-control" onChange={handleChange} placeholder="Company Website*"/><br/><br/>
+<input type="text" name="web" value={data.web} ref={companyWebsiteRef} className="form-control" onChange={handleChange} placeholder="Company Website*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Contact no.</label>
-<input type="text" name="contact" value={data.contact} className="form-control" onChange={handleChange} placeholder="Contact no.*"/><br/><br/>
+<input type="text" name="contact" value={data.contact} ref={contactRef} className="form-control" onChange={handleChange} placeholder="Contact no.*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Application Deadline</label>
-<input type="Date" name="deadline" value={data.deadline}  className="form-control" onChange={handleChange}/><br/><br/>
+<input type="Date" name="deadline" value={data.deadline} ref={applicationDeadlineRef} className="form-control" onChange={handleChange}/><br/><br/>
 
 
     <label htmlFor="" className="form-label">Job Description</label><br />
-    <textarea name="description" rows="8" cols="50" onChange={handleChange} value={data.description} placeholder="Enter the job description here" className="border rounded-lg border-back p-2 w-full"></textarea><br />
+    <textarea name="description" rows="8" cols="50" onChange={handleChange} ref={descriptionRef} value={data.description} placeholder="Enter the job description here" className="border rounded-lg border-back p-2 w-full"></textarea><br />
 
     <div className="text-right">
     <input type="submit" value="Post Job" className="bg-primary mt-8  p-3 w-1/4 text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] "/>
@@ -270,7 +332,7 @@ export default function Create(){
 </form>
 </div>
 <div className="footer">
-{/* <footer/> */}
+<Footer className="footer"/>
 </div>
 </div>
    </>

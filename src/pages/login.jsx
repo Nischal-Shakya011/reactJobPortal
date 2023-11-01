@@ -122,7 +122,7 @@ indi_error
     </form>
 </div>
 </div><br/><br/>
-{/* <Footer/> */}
+<Footer className="footer"/>
 </>
 )
 }

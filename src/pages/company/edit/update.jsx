@@ -7,11 +7,13 @@ import { useRouter } from "next/router";
 
 export default function Update({job}){
 
+    const router = useRouter();
+
     const [data, setData] = useState({
         "name":"",
         "company_name":"",
         "company_website":"",
-        "no_of_vacancy":"",
+        "number_of_vacancy":"",
         "job_level":"",
         "contact_no":"",
         "location":"",
@@ -23,46 +25,32 @@ export default function Update({job}){
         "images":[]
         
     })
-    const router = useRouter();
 
     // const [data, setData] = useState(job)
 
     useEffect(() => {
-        setData(job)
+        console.log(job);
+        // setData(job)
+        setData({
+        "name":job.name,
+        "company_name":job.company_name,
+        "company_website":job.company_website,
+        "number_of_vacancy":job.number_of_vacancy,
+        "job_level":job.job_level,
+        "contact_no":job.contact_no,
+        "location":job.location,
+        "deadline":job.deadline,
+        "offered_salary":job.offered_salary,
+        "description":job.description,
+        "application_start":job.application_start,
+        "categories":[job.categories],
+        "images":[]
+        })
     }, [job])
 
     // let [error, setError] = useState({
 
     // })
-  
-    function handleChange(e) {
-            console.log(e);
-            console.log(e.target.value);
-
-            const { name, value, type, checked } = e.target;
-
-            if (type === "checkbox") {
-              // Handle checkboxes separately
-              let updatedCategory;
-          
-              if (checked) {
-                // Checkbox is checked, add the value to the array
-                updatedCategory = [...data.categories, value];
-              } else {
-                // Checkbox is unchecked, remove the value from the array
-                updatedCategory = data.categories.filter((cat) => cat !== value);
-              }
-          
-              setData({ ...data, [name]: updatedCategory });
-            } else if (type === "file") {
-              // Handle file input
-              setData({ ...data, [name]: e.target.files });
-            } else {
-              // Handle other input types
-              setData({ ...data, [name]: value });
-    }
-}
-      
 
     function handleSubmit(e){
         e.preventDefault();
@@ -104,11 +92,11 @@ export default function Update({job}){
     //     }
     //     setError(temp)
 
-    console.log(data.category);
+    // console.log(data.name);
     let form_data = new FormData();
     form_data.append("name", data.name)
     form_data.append("company_name",data.company_name)
-    form_data.append("company_website",data.company_web)
+    form_data.append("company_website",data.company_website)
     form_data.append("contact_no",data.contact_no)
     form_data.append("offered_salary",data.offered_salary)
     form_data.append("number_of_vacancy",data.number_of_vacancy)
@@ -126,10 +114,10 @@ export default function Update({job}){
         form_data.append("categories[]", cat)
     })
 
-    let url = "http://express-job-portal-u1uo.vercel.app/api/jobs"
+    let url = "https://express-job-portal-u1uo.vercel.app/api/jobs"
 
     if (router.query.slug) {
-        url = `http://express-job-portal-u1uo.vercel.app/api/jobs/${router.query.slug} `
+url = "https://express-job-portal-u1uo.vercel.app/api/jobs/"+ router.query.slug
         axios.put(url, form_data, {
             headers: {
                 Authorization: "bearer " + localStorage.getItem("access_token")
@@ -147,6 +135,38 @@ export default function Update({job}){
 
 
     }
+  
+    function handleChange(e) {
+        e.preventDefault();
+            console.log(e);
+            // console.log(e.target.value);
+
+            const { name, value, type, checked } = e.target;
+
+            if (type === "checkbox") {
+              // Handle checkboxes separately
+              let updatedCategory;
+          
+              if (checked) {
+                // Checkbox is checked, add the value to the array
+                updatedCategory = [...data.categories, value];
+              } else {
+                // Checkbox is unchecked, remove the value from the array
+                updatedCategory = data.categories.filter((cat) => cat !== value);
+              }
+          
+              setData({ ...data, [name]: updatedCategory });
+            } else if (type === "file") {
+              // Handle file input
+              setData({ ...data, [name]: e.target.files });
+            } else {
+              // Handle other input types
+              setData({ ...data, [name]: value });
+    }
+}
+      
+
+    
 
     return<>
     <div className="wrapper">
@@ -185,20 +205,20 @@ export default function Update({job}){
 <input type="text" name="location" value={data.location} className="form-control" onChange={handleChange} placeholder="Location*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Application Start Date</label>
-<input type="Date" name="applicaton_start" value={data.applicaton_start} className="form-control" onChange={handleChange} /><br/><br/>
+<input type="text" name="applicaton_start" value={data.application_start} className="form-control" onChange={handleChange} /><br/><br/>
 
 <label htmlFor="" className="form-label">Job Category</label><br/>
 <div className="mt-3 flex gap-7">
     <span>
         <label htmlFor="" className="font-semibold">Frontend</label>
-{/* <input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("frontend")}/> */}
-<input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange}/>
+<input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("frontend")}/>
+{/* <input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange}/> */}
 </span>
 
 <span>
 <label htmlFor="" className="font-semibold">Backend</label>
-<input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} />
-{/* <input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("backend")} /> */}
+{/* <input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} /> */}
+<input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("backend")} />
 </span>
 </div><br /><br />
 
@@ -225,7 +245,7 @@ export default function Update({job}){
 <input type="text" name="contact_no" value={data.contact_no} className="form-control" onChange={handleChange} placeholder="Contact no.*"/><br/><br/>
 
 <label htmlFor="" className="form-label">Application Deadline</label>
-<input type="Date" name="deadline" value={data.deadline}  className="form-control" onChange={handleChange}/><br/><br/>
+<input type="text" name="deadline" value={data.deadline}  className="form-control" onChange={handleChange}/><br/><br/>
 
 
     <label htmlFor="" className="form-label">Job Description</label><br />
@@ -240,7 +260,7 @@ export default function Update({job}){
 </form>
 </div>
 <div className="footer">
-{/* <footer/> */}
+<Footer className="footer"/>
 </div>
 </div>
    </>

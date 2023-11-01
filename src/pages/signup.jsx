@@ -153,7 +153,7 @@ if(e.target.value)
     </form>
 </div>
 </div><br/><br/>
-{/* <Footer/> */}
+<Footer className="footer"/>
 </>
 )
 }

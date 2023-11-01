@@ -23,7 +23,7 @@ export default function Home(props) {
    <>
    <Banner/>
    <AllJobs {...props}/>
-   {/* <Footer/> */}
+   <Footer className="footer"/>
    </>
   )
 }
