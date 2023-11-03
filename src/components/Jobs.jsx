@@ -15,14 +15,11 @@ export default function jobs({jobs, meta_data})
     const currentPage = router.query.page ? parseInt(router.query.page) : 1;
     const searchTerm = router.query.search_term || "";
   
-    // Function to navigate to the next page with search term
     const handleClick = () => {
       const nextPage = currentPage + 1;
       
-      // Build the URL with the updated page and search term
       const url = `/?page=${nextPage}&search_term=${searchTerm}`;
       
-      // Navigate to the next page while updating the 'page' and 'search_term' query parameters
       router.push(url);
     };
     return(
@@ -58,23 +55,7 @@ export default function jobs({jobs, meta_data})
         }
         <div className="text-center mt-5 mb-2">
             <button className="bg-primary text-white p-3 rounded-lg hover:bg-[#0e5949]"          
-             onClick={ handleClick
-//                 (e) => {
-// console.log(router.query) // {search_term=frontend,page=1}
-// let url = router.route + "?";
-
-// // router.query.page = 1
-// let arr = Object.entries(router.query)
-
-// arr.forEach(el =>{
-//   url += `${el[0]}=${el[1]}&`
-// })
-
-// router.push(url)
-
-
-// }
-}>View More  <BsFillArrowRightCircleFill className="inline"/></button>
+             onClick={ handleClick}>View More  <BsFillArrowRightCircleFill className="inline"/></button>
    
         </div>
         </div>
