@@ -12,8 +12,19 @@ import { useRouter } from 'next/router'
 export default function jobs({jobs, meta_data})
 {
     const router = useRouter()
-    let page = 1;
-
+    const currentPage = router.query.page ? parseInt(router.query.page) : 1;
+    const searchTerm = router.query.search_term || "";
+  
+    // Function to navigate to the next page with search term
+    const handleClick = () => {
+      const nextPage = currentPage + 1;
+      
+      // Build the URL with the updated page and search term
+      const url = `/?page=${nextPage}&search_term=${searchTerm}`;
+      
+      // Navigate to the next page while updating the 'page' and 'search_term' query parameters
+      router.push(url);
+    };
     return(
         
         <div className="bg-white">
@@ -30,7 +41,7 @@ export default function jobs({jobs, meta_data})
                                {/* <Image src={bannerImg} alt='' className="w-16 h-16 rounded-[50%]" width={200} height={200}></Image>   */}
                             </div>
                             <div>
-                           <p className="text-[#3e423f] text-sm">Company name</p>  
+                           <p className="text-[#3e423f] text-sm">{job.company_name}</p>  
                            <p className="text-black font-bold text-lg"> {job.name} ({job.job_level})</p>
                            <div>
                             <BiCurrentLocation className='inline mr-2 text-primary'/>
@@ -47,21 +58,23 @@ export default function jobs({jobs, meta_data})
         }
         <div className="text-center mt-5 mb-2">
             <button className="bg-primary text-white p-3 rounded-lg hover:bg-[#0e5949]"          
-             onClick={(e) => {
+             onClick={ handleClick
+//                 (e) => {
 // console.log(router.query) // {search_term=frontend,page=1}
-let url = router.route + "?";
+// let url = router.route + "?";
 
-router.query.page = 1
-let arr = Object.entries(router.query)
+// // router.query.page = 1
+// let arr = Object.entries(router.query)
 
-arr.forEach(el =>{
-  url += `${el[0]}=${el[1]}&`
-})
+// arr.forEach(el =>{
+//   url += `${el[0]}=${el[1]}&`
+// })
 
-router.push(url)
+// router.push(url)
 
 
-}}>View More  <BsFillArrowRightCircleFill className="inline"/></button>
+// }
+}>View More  <BsFillArrowRightCircleFill className="inline"/></button>
    
         </div>
         </div>

@@ -20,6 +20,7 @@ export default function Home(props) {
   // }, [])
   
   return (
+    
    <>
    <Banner/>
    <AllJobs {...props}/>
