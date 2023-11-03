@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios';
 import Update from './update';
 
-export default function edit() {
+export default function Edit() {
 
     const router = useRouter();
     let [job, setJob] = useState({})
@@ -18,7 +18,7 @@ export default function edit() {
                 })
         }
     
-    }, [router.isReady])
+    }, [router.isReady, router.query.slug])
 
 
     return (

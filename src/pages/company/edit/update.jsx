@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
-
+import Footer from "@/components/Footer";
 
 export default function Update({job}){
 

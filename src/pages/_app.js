@@ -29,7 +29,7 @@ function App({ Component, pageProps }) {
       })
     }
     
-  },[])
+  },[dispatch]);
   return <>
   <Header/>
 <Component {...pageProps}/>
