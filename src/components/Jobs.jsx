@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 
 export default function Jobs({jobs, meta_data})
 {
-    const Router = useRouter();
+    const router = useRouter();
     const currentPage = router.query.page ? parseInt(router.query.page) : 1;
     const searchTerm = router.query.search_term || "";
   
@@ -20,7 +20,7 @@ export default function Jobs({jobs, meta_data})
       
       const url = `/?page=${nextPage}&search_term=${searchTerm}`;
       
-      Router.push(url);
+      router.push(url);
     };
     return(
         
