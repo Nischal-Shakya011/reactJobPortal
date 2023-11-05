@@ -222,7 +222,7 @@ export default function Create(){
     )
     .then(res =>{
         console.log("posted successfully");
-        router.push("/posted")
+        router.push("/company")
     })
 
     .catch(err =>{
