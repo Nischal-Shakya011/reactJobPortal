@@ -2,6 +2,7 @@ import Header from '@/components/Header'
 import React from 'react'
 import axios from 'axios'
 import Link from 'next/link';
+import JOB_SEEKER from '../const/roles'
 
 import Footer from '@/components/Footer'
 import { useSelector } from 'react-redux';
@@ -34,6 +35,7 @@ const requestData = {
     
     .then(res=>{
     console.log("applied");
+    router.push("/apply");
     })
     .catch(err=>{
         console.log(err);
