@@ -9,43 +9,43 @@ export default function Update({job}){
 
     const router = useRouter();
 
-    const [data, setData] = useState({
-        "name":"",
-        "company_name":"",
-        "company_website":"",
-        "number_of_vacancy":"",
-        "job_level":"",
-        "contact_no":"",
-        "location":"",
-        "deadline":"",
-        "offered_salary":"",
-        "description":"",
-        "application_start":"",
-        "categories":[],
-        "images":[]
+    // const [data, setData] = useState({
+    //     "name":"",
+    //     "company_name":"",
+    //     "company_website":"",
+    //     "number_of_vacancy":"",
+    //     "job_level":"",
+    //     "contact_no":"",
+    //     "location":"",
+    //     "deadline":"",
+    //     "offered_salary":"",
+    //     "description":"",
+    //     "application_start":"",
+    //     "categories":[],
+    //     "images":[]
         
-    })
+    // })
 
-    // const [data, setData] = useState(job)
+    const [data, setData] = useState(job)
 
     useEffect(() => {
         console.log(job);
-        // setData(job)
-        setData({
-        "name":job.name,
-        "company_name":job.company_name,
-        "company_website":job.company_website,
-        "number_of_vacancy":job.number_of_vacancy,
-        "job_level":job.job_level,
-        "contact_no":job.contact_no,
-        "location":job.location,
-        "deadline":job.deadline,
-        "offered_salary":job.offered_salary,
-        "description":job.description,
-        "application_start":job.application_start,
-        "categories":[job.categories],
-        "images":[]
-        })
+        setData(job)
+        // setData({
+        // "name":job.name,
+        // "company_name":job.company_name,
+        // "company_website":job.company_website,
+        // "number_of_vacancy":job.number_of_vacancy,
+        // "job_level":job.job_level,
+        // "contact_no":job.contact_no,
+        // "location":job.location,
+        // "deadline":job.deadline,
+        // "offered_salary":job.offered_salary,
+        // "description":job.description,
+        // "application_start":job.application_start,
+        // "categories":[job.categories],
+        // "images":[]
+        // })
     }, [job])
 
     // let [error, setError] = useState({
@@ -139,7 +139,7 @@ url = "https://express-job-portal-u1uo.vercel.app/api/jobs/"+ router.query.slug
     function handleChange(e) {
         e.preventDefault();
             console.log(e);
-            // console.log(e.target.value);
+            console.log(e.target.value);
 
             const { name, value, type, checked } = e.target;
 
@@ -211,14 +211,14 @@ url = "https://express-job-portal-u1uo.vercel.app/api/jobs/"+ router.query.slug
 <div className="mt-3 flex gap-7">
     <span>
         <label htmlFor="" className="font-semibold">Frontend</label>
-<input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("frontend")}/>
-{/* <input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange}/> */}
+{/* <input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("frontend")}/> */}
+<input type="checkbox" name="categories" value="frontend"  className="ml-1"  onChange={handleChange}/>
 </span>
 
 <span>
 <label htmlFor="" className="font-semibold">Backend</label>
-{/* <input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} /> */}
-<input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("backend")} />
+<input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} />
+{/* <input type="checkbox" name="categories" value="backend"  className="ml-1"  onChange={handleChange} checked={data.categories.includes("backend")} /> */}
 </span>
 </div><br /><br />
 
