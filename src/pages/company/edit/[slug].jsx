@@ -18,8 +18,8 @@ export default function Edit() {
                 })
         }
     
-    }, [router.isReady, router.query.slug])
-
+    }, [])
+    // router.isReady, router.query.slug
 
     return (
         <Update job={job} />
