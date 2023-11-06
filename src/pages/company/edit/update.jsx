@@ -125,6 +125,7 @@ url = "https://express-job-portal-u1uo.vercel.app/api/jobs/"+ router.query.slug
         })
         .then(res =>{
             console.log("posted successfully");
+            router.push("/company")
         })
     
         .catch(err =>{
