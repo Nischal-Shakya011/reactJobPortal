@@ -33,7 +33,7 @@ export default function Update({job}){
         // setData(job)
         setData({
         "name":job.name,
-        // "company_name":job.company_name,
+        "company_name":job.company_name,
         "company_website":job.company_website,
         "number_of_vacancy":job.number_of_vacancy,
         "job_level":job.job_level,
