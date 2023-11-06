@@ -9,43 +9,43 @@ export default function Update({job}){
 
     const router = useRouter();
 
-    // const [data, setData] = useState({
-    //     "name":"",
-    //     "company_name":"",
-    //     "company_website":"",
-    //     "number_of_vacancy":"",
-    //     "job_level":"",
-    //     "contact_no":"",
-    //     "location":"",
-    //     "deadline":"",
-    //     "offered_salary":"",
-    //     "description":"",
-    //     "application_start":"",
-    //     "categories":[],
-    //     "images":[]
+    const [data, setData] = useState({
+        "name":"",
+        "company_name":"",
+        "company_website":"",
+        "number_of_vacancy":"",
+        "job_level":"",
+        "contact_no":"",
+        "location":"",
+        "deadline":"",
+        "offered_salary":"",
+        "description":"",
+        "application_start":"",
+        "categories":[],
+        "images":[]
         
-    // })
+    })
 
-    const [data, setData] = useState(job)
+    // const [data, setData] = useState(job)
 
     useEffect(() => {
         console.log(job);
-        setData(job)
-        // setData({
-        // "name":job.name,
+        // setData(job)
+        setData({
+        "name":job.name,
         // "company_name":job.company_name,
-        // "company_website":job.company_website,
-        // "number_of_vacancy":job.number_of_vacancy,
-        // "job_level":job.job_level,
-        // "contact_no":job.contact_no,
-        // "location":job.location,
-        // "deadline":job.deadline,
-        // "offered_salary":job.offered_salary,
-        // "description":job.description,
-        // "application_start":job.application_start,
-        // "categories":[job.categories],
-        // "images":[]
-        // })
+        "company_website":job.company_website,
+        "number_of_vacancy":job.number_of_vacancy,
+        "job_level":job.job_level,
+        "contact_no":job.contact_no,
+        "location":job.location,
+        "deadline":job.deadline,
+        "offered_salary":job.offered_salary,
+        "description":job.description,
+        "application_start":job.application_start,
+        "categories":[job.categories],
+        "images":[]
+        })
     }, [job])
 
     // let [error, setError] = useState({
