@@ -36,7 +36,7 @@ export default function Recommendation() {
         <div className="grid grid-cols-3 mt-6 gap-5 w-full">
          {
             recommendation.map((recommend) =>(
-                <div className="border-back border-2 rounded-lg h-44 p-5 shadow-md">
+                <div key={recommend._id} className="border-back border-2 rounded-lg h-44 p-5 shadow-md">
                     <div className="flex gap-10">
                     <Image src={`https://express-job-portal-u1uo.vercel.app/${recommend.images[0]}`} alt='' className="w-16 h-16 rounded-[50%]" width={200} height={200}></Image>
                     <div className="grid ">

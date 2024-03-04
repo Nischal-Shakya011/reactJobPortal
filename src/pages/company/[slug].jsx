@@ -42,7 +42,7 @@ export default function Applicants() {
         {
             applicants.map(appli =>{
                 return(
-                <div className='container border-2 border-back rounded-lg outline-none shadow-sm p-8 mt-8'>
+                <div key={appli.profile._id} className='container border-2 border-back rounded-lg outline-none shadow-sm p-8 mt-8'>
                         <div className='grid grid-cols-2 gap-8 p-6'> 
                         <div className='border border-back p-4'>
                     <div className="bg-back p-3 text-xl text-center font-bold w-full">Personal Details!</div><br/>   
