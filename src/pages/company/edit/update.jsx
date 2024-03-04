@@ -253,7 +253,7 @@ url = "https://express-job-portal-u1uo.vercel.app/api/jobs/"+ router.query.slug
     <textarea name="description" rows="8" cols="50" onChange={handleChange} value={data.description} placeholder="Enter the job description here" className="border rounded-lg border-back p-2 w-full"></textarea><br />
 
     <div className="text-right">
-    <input type="submit" value="Post Job" className="bg-primary mt-8  p-3 w-1/4 text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] "/>
+    <input type="submit" value="Post Job" className="bg-primary mt-8  p-3 w-1/4 text-white cursor-pointer rounded-lg font-semibold hover:bg-[#b56d16] "/>
 </div>
 
 </div>

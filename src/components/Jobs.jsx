@@ -29,7 +29,8 @@ export default function Jobs({jobs, meta_data})
             {/* <p>total-{meta_data.total}</p> */}
             {jobs.map(job => {
                 // console.log(job.images);
-                let url = `http://express-job-portal-u1uo.vercel.app/${job.images[0]}`
+                
+                let url = `https://express-job-portal-u1uo.vercel.app/${job.images[0]}`;
 
                 return <div key={job._id} className="container w-full h-32 shadow-xl p-3 mt-4 rounded-lg  bg-[#edf2ef] flex justify-between items-center">
                 <div className="flex gap-8">
@@ -47,14 +48,14 @@ export default function Jobs({jobs, meta_data})
                             </div>
                 </div>  
                     <div>
-                    <Link href={`/${job._id}`}> <button className="bg-primary text-white p-3 rounded-md mr-5 hover:bg-[#0e5949]">View Details</button></Link>
+                    <Link href={`/${job._id}`}> <button className="bg-primary text-white p-3 rounded-md mr-5 hover:bg-[#b56d16]">View Details</button></Link>
                     </div>              
             
                         </div>
             })
         }
         <div className="text-center mt-5 mb-2">
-            <button className="bg-primary text-white p-3 rounded-lg hover:bg-[#0e5949]"          
+            <button className="bg-primary text-white p-3 rounded-lg hover:bg-[#b56d16]"          
              onClick={ handleClick}>View More  <BsFillArrowRightCircleFill className="inline"/></button>
    
         </div>

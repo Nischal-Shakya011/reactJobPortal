@@ -93,6 +93,7 @@ router.push("./delete")
         <span>{dateCreate}</span>
         <span>{job.offered_salary}</span>
         <span className="flex gap-4">
+        <Link href={`/company/${job._id}`}>See</Link>
         <Link href={`/${job._id}`}><AiFillEye/></Link>
         <Link href={`/company/edit/${job._id}`}><AiFillEdit/></Link>
         <span onClick={()=>handleDelete(job._id) } className="cursor-pointer"><AiFillDelete/></span>

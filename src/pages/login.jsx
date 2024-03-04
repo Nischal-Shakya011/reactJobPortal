@@ -56,7 +56,7 @@ setisSubmitting(true)
     .catch(err=>{
         setisSubmitting(false)
         console.log(err);
-         setError(err.response.data.msg)
+         setError(err.response?.data.msg)
         
     })
 }
@@ -117,7 +117,7 @@ indi_error
 }
 
 {/* <input type="submit" value="Login" disabled={isSubmitting} className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] disabled:bg-green-200"/> */}
-<button type="submit" disabled={isSubmitting} className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] ">{isSubmitting&&<AiOutlineLoading3Quarters className="inline"/>}  Login</button>
+<button type="submit" disabled={isSubmitting} className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#b56d16] ">{isSubmitting&&<AiOutlineLoading3Quarters className="inline"/>}  Login</button>
 <br/><br/><p className=" text-center">Not a Member?  <Link href={"/signup"} className="font-bold text-center"> Register</Link></p>
     </form>
 </div>

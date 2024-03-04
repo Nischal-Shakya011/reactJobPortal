@@ -11,7 +11,7 @@ export default function Edit() {
     useEffect(() => {
 
         if (router.isReady) {
-            axios.get(`http://express-job-portal-u1uo.vercel.app/api/jobs/${router.query.slug}`)
+            axios.get(`https://express-job-portal-u1uo.vercel.app/api/jobs/${router.query.slug}`)
                 .then(res => {
                     // console.log(res.data.name);
                     setJob(res.data)

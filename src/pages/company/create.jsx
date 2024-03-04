@@ -285,6 +285,12 @@ export default function Create(){
 {/* <input type="checkbox" name="category" value="backend"  className="ml-1"  onChange={handleChange} /> */}
 <input type="checkbox" name="category" value="backend"  className="ml-1" onChange={handleChange} checked={data.category.includes("backend")} />
 </span>
+
+<span>
+<label htmlFor="" className="font-semibold">Finance</label>
+{/* <input type="checkbox" name="category" value="backend"  className="ml-1"  onChange={handleChange} /> */}
+<input type="checkbox" name="category" value="finance"  className="ml-1" onChange={handleChange} checked={data.category.includes("finance")} />
+</span>
 </div><br /><br />
 
 <label htmlFor="" className="form-label" >Upload Image</label> <br /><br />
@@ -324,7 +330,7 @@ wholeError
     <textarea name="description" rows="8" cols="50" onChange={handleChange} ref={descriptionRef} value={data.description} placeholder="Enter the job description here" className="border rounded-lg border-back p-2 w-full"></textarea><br />
 
     <div className="text-right">
-    <input type="submit" value="Post Job" className="bg-primary mt-8  p-3 w-1/4 text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] "/>
+    <input type="submit" value="Post Job" className="bg-primary mt-8  p-3 w-1/4 text-white cursor-pointer rounded-lg font-semibold hover:bg-[#b56d16] "/>
 </div>
 
 </div>

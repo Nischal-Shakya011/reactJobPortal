@@ -22,7 +22,7 @@ router.push("/?search_term=" + e.target.search_term.value)
 <p className='text-[#3e423f] mt-5'>Hand-picked opportunities to work from home, remotely, freelance,<br/> full-time, part-time, contract and internships.</p>
 <form className='flex mt-20' onSubmit={handleSearch}>
             <input type="text" name='search_term' className=' bg-white border w-5/6 h-18 outline-none px-2 rounded-lg'  />
-            <button className='bg-primary text-white px-5 py-3 inline rounded-lg hover:bg-[#0e5949]'>
+            <button className='bg-primary text-white px-5 py-3 inline rounded-lg hover:bg-[#b56d16]'>
              Search
             </button>
           </form>

@@ -58,7 +58,7 @@ router.push("/login")
             {
                 redux_user?.role != "company"
                 &&
-           <button className='bg-primary p-3 rounded-lg mt-5 text-white hover:bg-[#0e5949]' onClick={handleClick}>Apply This Job</button> 
+           <button className='bg-primary p-3 rounded-lg mt-5 text-white hover:bg-[#b56d16]' onClick={handleClick}>Apply This Job</button> 
                      }
         </div>
         <div className='container mt-5'>

@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { setReduxUser } from "@/redux/slice/userSlice";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { JOB_SEEKER } from "@/const/roles";
 
 export default function Signup()
 {
@@ -12,10 +15,13 @@ export default function Signup()
     let [name, setName] = useState("")
     let [password, setPassword] = useState("")
     let [email, setEmail] = useState("")
+    let [role, setRole] = useState("")
+    
     let [error, setError] = useState({
 
     })
     let [isSubmitting, setisSubmitting] = useState(false)
+    const dispatch = useDispatch();
 
 
 function handleSubmit(e)
@@ -34,10 +40,14 @@ function handleSubmit(e)
         validation = false;
     }
     if(!password){
-        temp.password = "Please enter password";
+        temp.password = "this is required field";
         validation = false;
     }
-    
+    if(!role){
+        temp.role = "this is required field";
+        validation = false;
+    }
+
     setError(temp)
 
 if(validation){
@@ -46,12 +56,20 @@ if(validation){
         "name":name,
         "email":email,
         "password":password,
-        "role":e.target.role.value
+        "role":role,
     })
     .then(res => {
         setisSubmitting(false)
-
-router.push("/login")
+        // console.log(res);
+        dispatch(setReduxUser(res.data.user))
+        localStorage.setItem("access_token", res.data.token);
+        if(role == JOB_SEEKER)
+        {
+            router.push("/userProfile")
+        }
+        else{
+            router.push("/")
+        }
     })
 
     .catch(err=>{
@@ -59,8 +77,8 @@ router.push("/login")
 
         console.log(err);
         let temp = {}
-          if (err.response.data.errors && err.response.data.errors?.length > 0) {
-            err.response.data.errors.forEach(indi_error => {
+          if (err.response?.data.errors && err.response.data.errors?.length > 0) {
+            err.response?.data.errors.forEach(indi_error => {
               temp[indi_error.params] = indi_error.msg
             })
 
@@ -141,12 +159,27 @@ if(e.target.value)
 
 
 <br/><br/><label htmlFor="" className="form-label">Role</label>
-<select  className="form-control mt-3"  name="role">
+<select className="form-control mt-3"  name="role" onChange={(e)=>{
+    setRole(e.target.value)
+    if(e.target.value)
+ {
+     setError({...error, role:""})
+ }
+ else{
+     setError({...error, role:"this is required field"})
+ }
+}} >
+<option value={null} ></option>
 <option value={"company"}>Company</option>
 <option value={"job-seeker"}>Job-Seeker</option>
 </select>
+{
+      error
+      &&
+      <small className="text-red-600">{error.role}</small>
+}
 
-<input disabled={isSubmitting} type="submit" value="Create Account" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] disabled:bg-green-200"/>
+<input disabled={isSubmitting} type="submit" value="Create Account" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#b56d16] disabled:bg-green-200"/>
 
 <br/><br/><p className="text-center">Already a user? <Link href={"/login"} className="font-bold">Login</Link></p>
 
