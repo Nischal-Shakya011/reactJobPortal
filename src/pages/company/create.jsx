@@ -183,13 +183,15 @@ export default function Create(){
     form_data.append("description",data.description)
     form_data.append("application_start",data.start)
     form_data.append("images[]", data.images);
+    form_data.append("categories[]", data.category);
 
 
-    let tempo = [...data.category]
 
-    tempo.forEach(cat =>{
-        form_data.append("categories[]", cat)
-    })
+    // let tempo = [...data.category]
+
+    // tempo.forEach(cat =>{
+    //     form_data.append("categories[]", cat)
+    // })
 
     // let temp = [...data.images]
     // let photo = []
@@ -227,7 +229,7 @@ export default function Create(){
 
     .catch(err =>{
         console.log(err);
-        setWholeError(err.response.data.msg);
+        setWholeError(err?.response?.data.msg);
     })
 
 
@@ -274,24 +276,66 @@ export default function Create(){
 <input type="Date" name="start" value={data.start} ref={applicationStartRef} className="form-control" onChange={handleChange} /><br/><br/>
 
 <label htmlFor="" className="form-label">Job Category</label><br/>
-<div className="mt-3 flex gap-7">
+<select name="category" className="form-control" onChange={handleChange} value={data.category}>
+<option value={"Bank_and_Financial"}>Bank/Financial Institution</option>
+            <option value={"Architecture_Interior_Design"}>Architecture/Interior Design</option>
+            <option value={"Hospitality"}>Hospitality</option>
+            <option value={"NGO_INGO_Social_Work"}>NGO/INGO/Social Work</option>
+            <option value={"IT_and_Telecommununication"}>IT and Telecommununication</option>
+            <option value={"Construction_Engineering_Architects"}>Construction/Engineering/Architects</option>
+            <option value={"Teaching_and_Education"}>Teaching/Education</option>
+            <option value={"HealthCare_Pharma_Biotech_Medical"}>HealthCare/Pharma/Biotech/Medical</option>
+            <option value={"Human_Resource_Organization_Development"}>Human Resource/ Organization Development</option>
+            <option value={"Sales_Marketing"}>Sales/Marketing/Advertising</option>
+            <option value={"Accounting_Finance"}>Accounting/Finance</option>
+    </select><br/><br/>
+{/* <div className="mt-3 grid">
     <span>
-        <label htmlFor="" className="font-semibold">Frontend</label>
-<input type="checkbox" name="category" value="frontend"  className="ml-1" onChange={handleChange} checked={data.category.includes("frontend")}/>
+        <label htmlFor="" className="font-semibold">Bank/Financial Institution</label>
+<input type="checkbox" name="category" value="Bank/Financial Institution"  className="ml-1" onChange={handleChange} checked={data.category.includes("Bank/Financial Institution")}/>
 </span>
 
 <span>
-<label htmlFor="" className="font-semibold">Backend</label>
-{/* <input type="checkbox" name="category" value="backend"  className="ml-1"  onChange={handleChange} /> */}
-<input type="checkbox" name="category" value="backend"  className="ml-1" onChange={handleChange} checked={data.category.includes("backend")} />
+<label htmlFor="" className="font-semibold">Architecture/Interior Design</label>
+<input type="checkbox" name="category" value="Architecture/Interior Design"  className="ml-1" onChange={handleChange} checked={data.category.includes("Architecture/Interior Design")} />
 </span>
-
 <span>
-<label htmlFor="" className="font-semibold">Finance</label>
-{/* <input type="checkbox" name="category" value="backend"  className="ml-1"  onChange={handleChange} /> */}
-<input type="checkbox" name="category" value="finance"  className="ml-1" onChange={handleChange} checked={data.category.includes("finance")} />
+<label htmlFor="" className="font-semibold">Hospitality</label>
+<input type="checkbox" name="category" value="Hospitality"  className="ml-1" onChange={handleChange} checked={data.category.includes("Hospitality")} />
 </span>
-</div><br /><br />
+<span>
+<label htmlFor="" className="font-semibold">NGO/INGO/Social Work</label>
+<input type="checkbox" name="category" value="NGO/INGO/Social Work"  className="ml-1" onChange={handleChange} checked={data.category.includes("NGO/INGO/Social Work")} />
+</span>
+<span>
+<label htmlFor="" className="font-semibold">IT and Telecommununication</label>
+<input type="checkbox" name="category" value="IT and Telecommununication"  className="ml-1" onChange={handleChange} checked={data.category.includes("IT and Telecommununication")} />
+</span>
+<span>
+<label htmlFor="" className="font-semibold">Construction/Engineering/Architects</label>
+<input type="checkbox" name="category" value="Construction/Engineering/Architects"  className="ml-1" onChange={handleChange} checked={data.category.includes("Construction/Engineering/Architects")} />
+</span>
+<span>
+<label htmlFor="" className="font-semibold">Teaching/Education</label>
+<input type="checkbox" name="category" value="Teaching/Education"  className="ml-1" onChange={handleChange} checked={data.category.includes("Teaching/Education")} />
+</span>
+<span>
+<label htmlFor="" className="font-semibold">HealthCare/Pharma/Biotech/Medical</label>
+<input type="checkbox" name="category" value="HealthCare/Pharma/Biotech/Medical"  className="ml-1" onChange={handleChange} checked={data.category.includes("HealthCare/Pharma/Biotech/Medical")} />
+</span>
+<span>
+<label htmlFor="" className="font-semibold">Human Resource/ Organization Development</label>
+<input type="checkbox" name="category" value="Human Resource/ Organization Development"  className="ml-1" onChange={handleChange} checked={data.category.includes("Human Resource/ Organization Development")} />
+</span>
+<span>
+<label htmlFor="" className="font-semibold">Sales/Marketing/Advertising</label>
+<input type="checkbox" name="category" value="Sales/Marketing/Advertising"  className="ml-1" onChange={handleChange} checked={data.category.includes("Sales/Marketing/Advertising")} />
+</span>
+<span>
+<label htmlFor="" className="font-semibold">Accounting/Finance</label>
+<input type="checkbox" name="category" value="Accounting/Finance"  className="ml-1" onChange={handleChange} checked={data.category.includes("Accounting/Finance")} />
+</span>
+</div><br /><br /> */}
 
 <label htmlFor="" className="form-label" >Upload Image</label> <br /><br />
 <input name="images" type="file" multiple onChange={handleChange}/>

@@ -31,7 +31,7 @@ let redux_user = useSelector((redux_store)=>
         
         <>
         <li>
-          <Link href="/" className='bg-primary text-white text-lg px-3 py-2  rounded-lg hover:bg-[#b56d16] cursor-pointer'><BiUserCircle className="inline"/> {redux_user.name}</Link>
+          <Link href="/getProfile" className='bg-primary text-white text-lg px-3 py-2  rounded-lg hover:bg-[#b56d16] cursor-pointer'><BiUserCircle className="inline"/> {redux_user.name}</Link>
         </li>
        { redux_user.role != COMPANY
        ?

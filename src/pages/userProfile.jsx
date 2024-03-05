@@ -125,13 +125,30 @@ export default function Profile() {
             Prefered Job
             </label>
             <br />
-            <input
+            {/* <input
               type="text"
               id="prefered_job"
               className="form-control mt-3"
               placeholder="Prefered Job"
               {...register("prefered_job")}
-            />
+            /> */}
+             <select 
+            className="form-control mt-3"
+            id="prefered_job"
+            {...register("prefered_job")}
+            >
+            <option value={"Bank_and_Financial"}>Bank/Financial Institution</option>
+            <option value={"Architecture_Interior_Design"}>Architecture/Interior Design</option>
+            <option value={"Hospitality"}>Hospitality</option>
+            <option value={"NGO_INGO_Social_Work"}>NGO/INGO/Social Work</option>
+            <option value={"IT_and_Telecommununication"}>IT and Telecommununication</option>
+            <option value={"Construction_Engineering_Architects"}>Construction/Engineering/Architects</option>
+            <option value={"Teaching_and_education"}>Teaching/Education</option>
+            <option value={"HealthCare_Pharma_Biotech_Medical"}>HealthCare/Pharma/Biotech/Medical</option>
+            <option value={"Human_Resource_Organization_Development"}>Human Resource/ Organization Development</option>
+            <option value={"Sales_Marketing"}>Sales/Marketing/Advertising</option>
+            <option value={"Accounting_Finance"}>Accounting/Finance</option>
+            </select>
             <small className="text-red-700">{errors.prefered_job?.message}</small>
             <br />
             <br />
