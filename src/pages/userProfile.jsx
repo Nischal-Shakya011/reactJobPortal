@@ -287,7 +287,7 @@ export default function Profile() {
             />
             <br />
             <br />
-            <input disabled={isSubmitting} type="submit" value="Submit" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#0e5949] disabled:bg-green-200"/>
+            <input disabled={isSubmitting} type="submit" value="Submit" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#b56d16] disabled:bg-green-200"/>
             </div>
     </form>
     </>
