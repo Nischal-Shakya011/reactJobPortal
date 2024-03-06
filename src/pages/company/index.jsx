@@ -7,7 +7,7 @@ import Link from "next/link";
 import {AiFillEye, AiFillDelete} from 'react-icons/ai'
 import {AiFillEdit} from 'react-icons/ai'
 import { useRouter } from "next/router";
-
+import { FaListUl } from "react-icons/fa";
 
 export default function Jobs(){
    const router = useRouter();
@@ -93,7 +93,7 @@ router.push("./delete")
         <span>{dateCreate}</span>
         <span>{job.offered_salary}</span>
         <span className="flex gap-4">
-        <Link href={`/company/${job._id}`}>See</Link>
+        <Link href={`/company/${job._id}`}><FaListUl /></Link>
         <Link href={`/${job._id}`}><AiFillEye/></Link>
         <Link href={`/company/edit/${job._id}`}><AiFillEdit/></Link>
         <span onClick={()=>handleDelete(job._id) } className="cursor-pointer"><AiFillDelete/></span>
