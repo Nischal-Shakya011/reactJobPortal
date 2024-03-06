@@ -41,9 +41,13 @@ export default function Jobs({jobs, meta_data})
                             <div>
                            <p className="text-[#3e423f] text-sm">{job.company_name}</p>  
                            <p className="text-black font-bold text-lg"> {job.name} ({job.job_level})</p>
-                           <div>
+                           <div className="flex gap-5 mt-2">
+                            <span>
                             <BiCurrentLocation className='inline mr-2 text-primary'/>
-                            <p className="text-black text-xs inline">{job.location}</p>
+                            <p className="text-black text-sm inline ">{job.location}</p>
+                            </span>
+                            <span className="text-black text-sm inline mt-1"><span className="font-bold">Vacancy: </span>{job.number_of_vacancy}</span>
+                            <span className="text-black text-sm inline mt-1"><span className="font-bold">Job Status: </span>{job.status}</span>
                            </div>
                             </div>
                 </div>  
