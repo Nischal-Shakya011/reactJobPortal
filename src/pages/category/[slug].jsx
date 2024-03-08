@@ -1,35 +1,40 @@
-import React from "react";
-import Image from 'next/image'
-import bannerImg from '../assets/banner.png'
-import {BiCurrentLocation} from 'react-icons/bi'
-import {BsFillArrowRightCircleFill} from 'react-icons/bs'
-import Link from "next/link";
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link';
+import axios from 'axios';
+import {BiCurrentLocation} from 'react-icons/bi'
+import Image from 'next/image';
+import Footer from '@/components/Footer';
 
+export default function Applicants() {
 
-
-
-export default function Jobs({jobs, meta_data})
-{
     const router = useRouter();
-    const currentPage = router.query.page ? parseInt(router.query.page) : 1;
-    const searchTerm = router.query.search_term || "";
-    const jobLevel = router.query.job_level || "";
-  
-    const handleClick = () => {
-      const nextPage = currentPage + 1;
-      
-      const url = `/?page=${nextPage}&search_term=${searchTerm}&job_level=${jobLevel}`;
-      
-      router.push(url);
-    };
-    return(
-        
-        <div className="bg-white">
-            <p className="text-black font-bold text-xl text-center mt-8">All Popular Jobs</p>
-            {/* <p>total-{meta_data.total}</p> */}
+    let [jobs, setJobs] = useState([])
+
+    useEffect(() => {
+console.log(router);
+
+    if (router.isReady) {
+         axios.get(`https://express-job-portal-u1uo.vercel.app/api/jobs?search_term=${router.query.slug}`)
+
+            .then(res => {
+                console.log(res.data.jobs);
+                setJobs(res.data.jobs)
+            })
+            .catch(error => {
+                console.error(error);
+
+             })
+            }
+
+}, [router.isReady, router.query.slug])
+
+    return (
+        <>
+        <div className="wrapper">
+        <div className="bg-back p-6 text-xl text-center font-bold">Jobs For You</div> 
+<div className="bg-white">
             {jobs.map(job => {
-                // console.log(job.images);
                 
                 let url = `https://express-job-portal-u1uo.vercel.app/${job.images[0]}`;
 
@@ -59,12 +64,10 @@ export default function Jobs({jobs, meta_data})
                         </div>
             })
         }
-        <div className="text-center mt-5 mb-2">
-            <button className="bg-primary text-white p-3 rounded-lg hover:bg-[#b56d16]"          
-             onClick={ handleClick}>View More  <BsFillArrowRightCircleFill className="inline"/></button>
-   
-        </div>
-        </div>
         
+        </div>
+        <Footer className={"footer"}/>
+        </div>
+       </>
     )
 }
