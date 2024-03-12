@@ -31,7 +31,7 @@ export default function GetCourse() {
         <div className="grid grid-cols-3 mt-6 gap-5 w-full">
          {
             course.map((cor) =>(
-                <Link href={`/course/${cor._id}`}>
+                <Link key={cor._id} href={`/course/${cor._id}`}>
                 <div key={cor._id} className="border-back border-2 rounded-lg p-3 shadow-md hover:border-primary cursor-pointer">
                     <div>
                     <Image src={trainingImg} alt='' className="w-full h-60 rounded-lg" width={200} height={200}></Image> 

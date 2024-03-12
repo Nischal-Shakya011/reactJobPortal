@@ -31,7 +31,7 @@ console.log(router);
              })
             }
 
-}, [router.isReady, router.query.slug])
+}, [])
 function hanldleClick(){
     redux_user
     ?

@@ -27,7 +27,7 @@ console.log(router);
              })
             }
 
-}, [router.isReady, router.query.slug])
+}, [])
 
     return (
         <>
