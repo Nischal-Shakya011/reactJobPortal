@@ -26,7 +26,7 @@ export default function Jobs({jobs, meta_data})
     return(
         
         <div className="bg-white">
-            <p className="text-black font-bold text-xl text-center mt-8">All Popular Jobs</p>
+            <p className="text-black font-bold text-xl text-center mt-8">All Jobs</p>
             {/* <p>total-{meta_data.total}</p> */}
             {jobs.map(job => {
                 // console.log(job.images);
