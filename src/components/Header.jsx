@@ -21,8 +21,23 @@ let redux_user = useSelector((redux_store)=>
       <ul className='flex gap-7  p-3 '>
         {/* <li>{redux_user?.name}</li>  */}
         
-        <li>
+        {/* <li>
         <Link href={"/jobStatus"} className='bg-primary text-white text-lg px-5 py-2 rounded-lg hover:bg-[#b56d16] cursor-pointer'>Charts</Link>       
+        </li> */}
+        {
+          redux_user?.name == "Admin"
+          &&
+          <>
+          <li>
+        <Link href={"/createCourse"} className='bg-primary text-white text-lg px-5 py-2 rounded-lg hover:bg-[#b56d16] cursor-pointer'>Create Course</Link>       
+        </li>
+        <li>
+        <Link href={"/getTrainingApplicants"} className='bg-primary text-white text-lg px-5 py-2 rounded-lg hover:bg-[#b56d16] cursor-pointer'>Training Applicants</Link>       
+        </li>
+          </>
+        }
+        <li>
+        <Link href={"/getCourse"} className='bg-primary text-white text-lg px-5 py-2 rounded-lg hover:bg-[#b56d16] cursor-pointer'>Our Courses</Link>       
         </li>
        {
         

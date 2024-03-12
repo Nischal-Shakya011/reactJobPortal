@@ -69,7 +69,7 @@ export default function GetProfile() {
                         <span><LuGraduationCap className="inline text-3xl font-bold"/></span>
                           <div className="grid">
                         <span className="font-semibold">Experience</span>
-                        <span>{profile.experience}</span>
+                        <span>{profile.experience} years</span>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@ export default function GetProfile() {
                         <p className="text-lg"><span className="font-semibold">Organization: </span>{profile.organization}</p>
                         <p className="text-lg"><span className="font-semibold">Job Level: </span>{profile.job_level}</p>
                         {/* <p className="text-lg"><span className="font-semibold">Roles and Responsibility</span>{profile.roles}</p> */}
-                        <p className="text-lg"><span className="font-semibold">Experience: </span>{profile.experience}</p>
+                        <p className="text-lg"><span className="font-semibold">Experience: </span>{profile.experience} years</p>
                     </div>
                 </div>
             </div>

@@ -179,7 +179,7 @@ if(e.target.value)
       <small className="text-red-600">{error.role}</small>
 }
 
-<input disabled={isSubmitting} type="submit" value="Create Account" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#b56d16] disabled:bg-green-200"/>
+<input disabled={isSubmitting} type="submit" value="Create Account" className="bg-primary mt-10 p-3 w-full text-white cursor-pointer rounded-lg font-semibold hover:bg-[#b56d16] disabled:bg-yellow-200"/>
 
 <br/><br/><p className="text-center">Already a user? <Link href={"/login"} className="font-bold">Login</Link></p>
 

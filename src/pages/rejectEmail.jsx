@@ -31,7 +31,7 @@ export default function AcceptEmail() {
   const onSubmit = (data) => {
     console.log(data)
     setisSubmitting(true)
-    axios.post("https://express-job-portal-u1uo.vercel.app/api/email/accept", data, 
+    axios.post("https://express-job-portal-u1uo.vercel.app/api/email/reject", data, 
     {
         headers:
         {
@@ -55,7 +55,7 @@ export default function AcceptEmail() {
     <>
     <div>
     <div className="bg-back p-6 text-xl text-center font-bold">
-    Accepted Email
+    Rejected Email
 </div>
     <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container border border-back rounded-lg outline-none shadow-sm p-8 mt-8 w-2/4 ">

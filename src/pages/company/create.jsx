@@ -24,6 +24,7 @@ export default function Create(){
 
     const [data, setData] = useState({
         "name":"",
+        "experience":"",
         "cname":"",
         "web":"",
         "vacancy":"",
@@ -182,6 +183,7 @@ export default function Create(){
     form_data.append("job_level",data.level)
     form_data.append("description",data.description)
     form_data.append("application_start",data.start)
+    form_data.append("experience",data.experience)
     form_data.append("images[]", data.images);
     form_data.append("categories[]", data.category);
 
@@ -289,6 +291,8 @@ export default function Create(){
             <option value={"Sales_Marketing"}>Sales/Marketing/Advertising</option>
             <option value={"Accounting_Finance"}>Accounting/Finance</option>
     </select><br/><br/>
+    <label htmlFor="" className="form-label">Experience required</label>
+<input type="Number" name="experience" value={data.experience} className="form-control" onChange={handleChange} placeholder="Number of years"/><br/><br/>
 {/* <div className="mt-3 grid">
     <span>
         <label htmlFor="" className="font-semibold">Bank/Financial Institution</label>
@@ -354,6 +358,7 @@ wholeError
 <label htmlFor="" className="form-label">Job Level</label>
 <select name="level" className="form-control" onChange={handleChange} value={data.level} ref={levelRef}>
     <option value = {null} ></option>
+    <option value="intern">Intern</option>
     <option value="fresher">Fresher</option>
     <option value="junior">Junior</option>
     <option value="mid">Mid</option>

@@ -72,7 +72,8 @@ export default function Applicants() {
                     </div>
                     <div className='text-center mt-24'>
                      <Link href={'/acceptEmail'}><button className='border p-2 w-20 outline-none bg-green-600 rounded-xl mr-8  text-white text-base hover:bg-green-400' >Accept</button></Link>
-                        <button disabled={isSubmitting} className='border p-2 w-20 outline-none bg-red-600 rounded-xl text-white text-base hover:bg-red-400 disabled:bg-red-400' onClick={()=>{
+                     <Link href={'/rejectEmail'}><button className='border p-2 w-20 outline-none bg-red-600 rounded-xl text-white text-base hover:bg-red-400 disabled:bg-red-400' >Reject</button></Link>
+                        {/* <button disabled={isSubmitting} className='border p-2 w-20 outline-none bg-red-600 rounded-xl text-white text-base hover:bg-red-400 disabled:bg-red-400' onClick={()=>{
                              axios.post("https://express-job-portal-u1uo.vercel.app/api/email/reject", {
                                 "email": appli.profile.email,
                              },
@@ -92,7 +93,7 @@ export default function Applicants() {
                               alert("email sent successfully");
                                  console.log(err);
                                });
-                        }}>Reject</button>
+                        }}>Reject</button> */}
                     </div>
                     </div>
                     </div>
