@@ -253,10 +253,11 @@ export default function Profile() {
             id="job_level"
             {...register("job_level")}
             >
-            <option value={"Entry-Level"}>Entry Level</option>
-            <option value={"Junior-Level"}>Junior Level</option>
-            <option value={"Mid-Level"}>Mid Level</option>
-            <option value={"Senior-Level"}>Senior Level</option>
+          <option value="intern">Intern</option>
+    <option value="fresher">Fresher</option>
+    <option value="junior">Junior</option>
+    <option value="mid">Mid</option>
+    <option value="senior">Senior</option>
             </select>
             <small className="text-red-700">{errors.job_level?.message}</small>
             <br/>
