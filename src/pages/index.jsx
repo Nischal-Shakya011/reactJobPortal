@@ -28,7 +28,6 @@ export default function Home(props) {
   // }, [])
   
   return (
-    
    <>
    <Banner/>
    <div className=' font-bold text-xl text-center mt-5'>
