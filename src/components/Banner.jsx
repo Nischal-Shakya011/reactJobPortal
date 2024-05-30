@@ -17,7 +17,7 @@ router.push(`/?search_term=${e.target.search_term.value}&job_level=${e.target.jo
     return(
             <>
             <div className='p-3 bg-[#d7d8d9]'>
-                <div className='container flex justify-between'>
+                <div className='container flex justify-between '>
                 <div>
 <p className='text-black text-5xl font-extrabold font-sans mt-7' >Discover a <span className='text-primary'>Career</span><br/> That <span className='text-primary'>Ignites</span> Your<br/> Professional Journey</p>
 <p className='text-[#3e423f] mt-5'>Explore personalized job options, including work-from-home, <br/>freelance, full-time, part-time, and internships</p>
