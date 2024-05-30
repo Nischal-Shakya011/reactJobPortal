@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 
 export default function Banner(){
-    const router = useRouter()
+    const router = useRouter() 
 
 
     function handleSearch(e){
